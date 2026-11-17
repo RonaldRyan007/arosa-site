@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EM BREVE</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" content="#0e0f10">
   <script>
     // Só abre para quem quebrou o site digitando TLLN; sem a marca, volta para a home.
     try { if (localStorage.getItem("tlln") !== "1") location.replace("/"); } catch {}
   </script>
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="/fonts/luto.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/nevoa.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/jardim.css">
   <script type="importmap">
     { "imports": {
@@ -20,10 +20,33 @@
     } }
   </script>
   <script type="module" src="/js/jardim.js"></script>
+  <script type="module" src="/js/arvore.js"></script>
 </head>
 <body>
   <canvas id="jardim" aria-hidden="true"></canvas>
+  <div class="escuro" aria-hidden="true"></div>
+  <div class="outro" aria-hidden="true"></div>
+  <div class="nevoa" aria-hidden="true"></div>
   <div class="chiado" aria-hidden="true"></div>
-  <h1 class="aviso" data-texto="EM BREVE, UM NOVO SISTEMA">EM BREVE, UM NOVO SISTEMA</h1>
+
+  <main>
+    <section class="cena-jardim">
+      <h1 class="aviso" data-texto="EM BREVE, UM NOVO SISTEMA">EM BREVE, UM NOVO SISTEMA</h1>
+    </section>
+    <div class="descida" aria-hidden="true"></div>
+    <section class="arvore">
+      <picture>
+        <source srcset="/img/arvore.webp" type="image/webp">
+        <img src="/img/arvore.jpg" alt="Uma árvore gigante de frutos luminosos, com as raízes dentro de um mar feito de galáxia; frutos caem e abrem anéis de luz na água." width="1376" height="768">
+      </picture>
+      <canvas class="frutos" aria-hidden="true"></canvas>
+      <div class="bruma" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <button class="radio" type="button" aria-pressed="false" aria-label="Ligar o som">
+    <svg viewBox="0 0 40 32" aria-hidden="true"><rect x="2" y="9" width="36" height="21" rx="3"/><line x1="10" y1="9" x2="30" y2="2"/><circle cx="12" cy="20" r="5"/><line x1="22" y1="16" x2="33" y2="16"/><line x1="22" y1="21" x2="33" y2="21"/><line x1="22" y1="26" x2="33" y2="26"/></svg>
+    <i></i>
+  </button>
 </body>
 </html>

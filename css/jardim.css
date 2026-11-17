@@ -1,39 +1,98 @@
-/* Easter egg TLLN: o jardim de rosas brancas com uma preta no meio. */
-@font-face { font-family: "Luto"; src: url(/fonts/luto.woff2) format("woff2"); font-display: block; }
+/* Easter egg TLLN: o jardim na névoa, com lanterna, "outro mundo" e a árvore no fim. */
+@font-face { font-family: "Nevoa"; src: url(/fonts/nevoa.woff2) format("woff2"); font-display: block; }
 
-html, body { margin: 0; height: 100%; overflow: hidden; background: #050505; color: #f2f2f2; }
-body { animation: acender 2.4s ease-out both; }
-@keyframes acender { from { filter: brightness(0); } 40% { filter: brightness(0); } }
+:root { --osso: #ddd6c8; --ferrugem: #7a2414; --sangue: #4a0a06; --lx: 50%; --ly: 45%; --raio: 260px; }
+html { background: #0e0f10; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+body { margin: 0; color: var(--osso); animation: acender 3s ease-out both; }
+@keyframes acender { from { filter: brightness(0); } 45% { filter: brightness(0); } }
 
-#jardim { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+#jardim { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
 
-/* chiado de TV velha por cima de tudo */
+/* lanterna: tudo escuro menos o círculo em volta do cursor (ou do dedo) */
+.escuro {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(circle var(--raio) at var(--lx) var(--ly), transparent 0, rgba(4, 4, 5, .35) 45%, rgba(4, 4, 5, .93) 100%);
+}
+
+/* outro mundo: grade enferrujada e manchas por cima, aparecendo com tremedeira */
+.outro {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0; mix-blend-mode: multiply;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 34px, rgba(30, 6, 3, .85) 34px 40px),
+    repeating-linear-gradient(90deg, transparent 0 34px, rgba(30, 6, 3, .85) 34px 40px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .03' numOctaves='5' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .12 0 0 0 0 .06 0 0 0 -2.2 1.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E") 0 0 / 400px,
+    #b8603f;
+}
+html.outro-mundo .outro { animation: virar 1.2s steps(8) forwards; }
+html.voltando .outro { animation: desvirar 1.6s steps(10) forwards; }
+@keyframes virar { 0% { opacity: 0; } 20% { opacity: .7; } 30% { opacity: .1; } 55% { opacity: .85; } 70% { opacity: .4; } 100% { opacity: .82; } }
+@keyframes desvirar { from { opacity: .82; } 40% { opacity: .2; } 50% { opacity: .7; } to { opacity: 0; } }
+
+/* névoa cinza que engole tudo na descida até a árvore */
+.nevoa {
+  position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse at 50% 60%, #8d8f8f, #4d5051 70%, #2a2c2d);
+}
+
 .chiado {
-  position: fixed; inset: -50%; pointer-events: none; opacity: .12; mix-blend-mode: screen;
+  position: fixed; inset: -50%; z-index: 4; pointer-events: none; opacity: .1; mix-blend-mode: screen;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: chiar .25s steps(4) infinite;
 }
 @keyframes chiar { 25% { translate: -4% 3%; } 50% { translate: 3% -5%; } 75% { translate: -2% -2%; } }
 
+main { position: relative; z-index: 5; }
+.cena-jardim { height: 100svh; position: relative; }
+.descida { height: 170svh; }
+
 .aviso {
-  position: fixed; left: 0; right: 0; bottom: 9vh; margin: 0; padding: 0 16px; text-align: center;
-  font: clamp(38px, 7.5vw, 110px)/.95 "Luto", sans-serif; font-weight: normal; letter-spacing: .02em;
-  text-shadow: 0 0 22px rgba(0, 0, 0, .9); pointer-events: none;
-  animation: tremer-aviso 4s infinite steps(1);
+  position: absolute; left: 0; right: 0; bottom: 10vh; margin: 0; padding: 0 16px; text-align: center;
+  font: clamp(30px, 5.4vw, 84px)/1.05 "Nevoa", serif; font-weight: normal; letter-spacing: .14em;
+  color: var(--osso); text-shadow: 0 0 18px rgba(0, 0, 0, .95), 0 0 2px rgba(0, 0, 0, .9);
+  animation: respirar 7s ease-in-out infinite, falhar 9s steps(1) infinite;
 }
-.aviso::before, .aviso::after {
-  content: attr(data-texto); position: absolute; inset: 0; padding: 0 16px; opacity: 0;
-}
-.aviso::before { color: #b3001b; animation: corte-a 4s infinite steps(1); }
-.aviso::after { color: #8ff; animation: corte-b 4s infinite steps(1); mix-blend-mode: screen; }
-@keyframes tremer-aviso { 0%, 86%, 100% { transform: none; } 87% { transform: translate(-3px, 1px) skewX(-4deg); } 90% { transform: translate(4px, -2px); } 93% { transform: none; } }
-@keyframes corte-a { 0%, 86%, 100% { opacity: 0; } 87% { opacity: .9; transform: translate(-7px, 2px); clip-path: inset(15% 0 50% 0); } 91% { opacity: .9; transform: translate(6px, 0); clip-path: inset(60% 0 5% 0); } }
-@keyframes corte-b { 0%, 88%, 100% { opacity: 0; } 89% { opacity: .7; transform: translate(6px, -2px); clip-path: inset(40% 0 30% 0); } }
+.aviso::before, .aviso::after { content: attr(data-texto); position: absolute; inset: 0; padding: 0 16px; opacity: 0; pointer-events: none; }
+.aviso::before { color: #a3271a; animation: corte-a 9s steps(1) infinite; }
+.aviso::after { color: #9fb4b8; animation: corte-b 9s steps(1) infinite; mix-blend-mode: screen; }
+@keyframes respirar { 50% { opacity: .62; filter: blur(1.2px); letter-spacing: .17em; } }
+@keyframes falhar { 0%, 91%, 100% { transform: none; } 92% { transform: translate(-4px, 1px) skewX(-6deg); } 94% { transform: translate(5px, -1px); } 95% { transform: none; } }
+@keyframes corte-a { 0%, 91%, 100% { opacity: 0; } 92% { opacity: .9; transform: translate(-8px, 2px); clip-path: inset(18% 0 50% 0); } 95% { opacity: .9; transform: translate(6px, 0); clip-path: inset(60% 0 6% 0); } }
+@keyframes corte-b { 0%, 93%, 100% { opacity: 0; } 94% { opacity: .6; transform: translate(6px, -2px); clip-path: inset(40% 0 30% 0); } }
+html.outro-mundo .aviso { color: #b0341f; text-shadow: 0 0 14px #000, 0 3px 0 var(--sangue), 0 8px 12px var(--sangue); letter-spacing: .2em; }
 
-@media (max-width: 700px) { /* no celular o céu escuro fica em cima: o texto vai para lá */
-  .aviso { top: 11vh; bottom: auto; font-size: 15vw; line-height: .9; }
+/* a árvore no fim da descida */
+.arvore { position: relative; height: 100svh; overflow: hidden; background: #05040a; }
+.arvore img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: aproximar 40s ease-in-out infinite alternate; }
+@keyframes aproximar { from { transform: scale(1.02); } to { transform: scale(1.12) translateY(-1.5%); } }
+.frutos { position: absolute; inset: 0; width: 100%; height: 100%; animation: aproximar 40s ease-in-out infinite alternate; } /* acompanha o zoom da imagem */
+.bruma { /* névoa baixa passando sobre o mar e um topo que sai da névoa da descida */
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(#2a2c2d 0, rgba(42, 44, 45, 0) 22%),
+    radial-gradient(ellipse 60% 18% at 30% 62%, rgba(150, 160, 175, .22), transparent 70%),
+    radial-gradient(ellipse 50% 14% at 75% 70%, rgba(150, 160, 175, .18), transparent 70%);
+  background-size: 100% 100%, 200% 100%, 200% 100%;
+  animation: bruma 26s linear infinite;
 }
+@keyframes bruma { to { background-position: 0 0, -200% 0, 200% 0; } }
 
+/* rádio: liga e desliga o som (o navegador só deixa tocar depois de um clique) */
+.radio {
+  position: fixed; left: 16px; bottom: 16px; z-index: 6; width: 52px; height: 44px; padding: 6px;
+  background: rgba(10, 10, 10, .55); border: 1px solid #3a3530; border-radius: 6px; cursor: pointer;
+}
+.radio svg { width: 100%; height: 100%; fill: none; stroke: #8f877a; stroke-width: 2; }
+.radio i { position: absolute; top: 7px; right: 7px; width: 6px; height: 6px; border-radius: 50%; background: #3a1410; }
+.radio[aria-pressed="true"] i { background: #ff3b20; box-shadow: 0 0 8px #ff3b20; animation: led 1.1s steps(2) infinite; }
+.radio:focus-visible { outline: 2px solid var(--osso); outline-offset: 3px; }
+@keyframes led { 50% { opacity: .35; } }
+
+@media (max-width: 700px) {
+  .aviso { top: 11vh; bottom: auto; font-size: 10vw; letter-spacing: .08em; }
+  :root { --raio: 240px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
+  .escuro { display: none; }
 }
