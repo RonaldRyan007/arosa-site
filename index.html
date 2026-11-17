@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A ROSA</title>
+  <meta name="description" content="A ROSA — um grupo de amigos que se encontra no Discord e, de vez em quando, inventa coisas.">
+  <meta name="theme-color" content="#0B0A0D">
+  <meta property="og:title" content="A ROSA">
+  <meta property="og:description" content="O jardim onde os projetos da ROSA brotam.">
+  <meta property="og:image" content="https://arosa.net.br/img/og.png">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/rosa-brava.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="/css/estilo.css">
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    } }
+  </script>
+  <script defer src="/js/site.js"></script>
+  <script type="module" src="/js/rosa3d.js"></script>
+</head>
+<body>
+  <div class="intro" aria-hidden="true">
+    <span class="intro-flor">O</span>
+    <span class="intro-txt">[ abrindo o jardim… ]</span>
+  </div>
+
+  <div class="grao" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><i></i></div>
+  <canvas id="rosa3d" aria-hidden="true"></canvas>
+
+  <header class="topo">
+    <a class="marca" href="/" aria-label="A ROSA, início">A ROSA</a>
+    <nav>
+      <a href="#projetos">projetos</a>
+      <a href="#fonte">fonte</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="selo selo-1">✦ comunidade ✦</p>
+      <p class="selo selo-2">amigos only</p>
+      <h1 class="titulo" data-texto="A ROSA"><span>A</span> <span>R</span><span>O</span><span>S</span><span>A</span></h1>
+      <p class="lema">Um grupo de amigos que se encontra no Discord e, de vez em quando, inventa coisas.
+        <br>Este é o jardim onde elas brotam.</p>
+      <a class="rolar" href="#projetos"><span>role</span> ↓</a>
+    </section>
+
+    <div class="faixa faixa-verde" aria-hidden="true">
+      <div class="faixa-trilho"><span>A ROSA ✿ PROJETOS ✿ AMIGOS ✿ RPG ✿ ESPINHOS ✿ PÉTALAS ✿ A ROSA ✿ PROJETOS ✿ AMIGOS ✿ RPG ✿ ESPINHOS ✿ PÉTALAS ✿</span><span>A ROSA ✿ PROJETOS ✿ AMIGOS ✿ RPG ✿ ESPINHOS ✿ PÉTALAS ✿ A ROSA ✿ PROJETOS ✿ AMIGOS ✿ RPG ✿ ESPINHOS ✿ PÉTALAS ✿</span></div>
+    </div>
+
+    <section id="projetos" class="projetos">
+      <h2 class="secao" data-embaralhar>PROJETOS</h2>
+      <p class="nota">[ 01 ativo · 02 brotando ]</p>
+      <div class="cards">
+        <a class="card card-ativo revelar" href="https://daggerheart.arosa.net.br">
+          <span class="card-brilho" aria-hidden="true"></span>
+          <span class="card-num">01</span>
+          <span class="card-tag">RPG · fichas</span>
+          <h3>DAGGERHEART</h3>
+          <p>Fichas de personagem, baralho de cartas e guia de regras da nossa mesa.</p>
+          <span class="card-ir">entrar <b>→</b></span>
+        </a>
+        <div class="card card-breve revelar" aria-label="Projeto em breve">
+          <span class="card-num">02</span>
+          <span class="card-tag">????</span>
+          <h3 data-embaralhar>EM BREVE</h3>
+          <p><span class="censura">████████ ██████</span> ainda é semente.</p>
+          <span class="card-ir">brotando…</span>
+        </div>
+        <div class="card card-breve revelar" aria-label="Projeto em breve">
+          <span class="card-num">03</span>
+          <span class="card-tag">???</span>
+          <h3 data-embaralhar>EM BREVE</h3>
+          <p>Alguém já teve a ideia. <span class="censura">██████</span></p>
+          <span class="card-ir">brotando…</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="faixa faixa-rosa" aria-hidden="true">
+      <div class="faixa-trilho reverso"><span>ROSA BRAVA ✦ ABCDEFGHIJKLMNOPQRSTUVWXYZ ✦ 0123456789 ✦ ROSA BRAVA ✦ ABCDEFGHIJKLMNOPQRSTUVWXYZ ✦ 0123456789 ✦</span><span>ROSA BRAVA ✦ ABCDEFGHIJKLMNOPQRSTUVWXYZ ✦ 0123456789 ✦ ROSA BRAVA ✦ ABCDEFGHIJKLMNOPQRSTUVWXYZ ✦ 0123456789 ✦</span></div>
+    </div>
+
+    <section id="fonte" class="fonte">
+      <h2 class="secao" data-embaralhar>ROSA BRAVA</h2>
+      <p class="nota">[ a fonte da casa · espinhos, pétalas e um O que é uma rosa vista de cima ]</p>
+      <div class="janela revelar">
+        <div class="janela-barra"><i></i><i></i><i></i><span>rosa_brava.otf</span></div>
+        <label class="teste">
+          <span class="visivel-leitor">Escreva para testar a fonte</span>
+          <input id="teste" type="text" value="ESCREVA AQUI" maxlength="40" spellcheck="false" autocomplete="off">
+        </label>
+        <div class="alfabeto" aria-label="Alfabeto da fonte Rosa Brava">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?✿</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <span class="marca">A ROSA</span>
+    <span>feito por amigos · arosa.net.br · 2026</span>
+    <span class="nota">[ se você chegou até aqui, cheire uma flor ]</span>
+  </footer>
+</body>
+</html>

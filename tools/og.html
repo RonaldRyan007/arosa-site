@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- Molde da imagem de compartilhamento (img/og.png, 1200x630). Gerar com tools/gerar-imagens.sh -->
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Rosa Brava"; src: url(/fonts/rosa-brava.woff2) format("woff2"); }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0B0A0D; }
+  body { display: grid; place-items: center; position: relative; font-family: "Space Mono", monospace; }
+  body::before { /* brilho rosa atrás do título */
+    content: ""; position: absolute; width: 760px; height: 760px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 46, 136, .35), transparent 65%);
+  }
+  h1 { margin: 0; font: 230px/.9 "Rosa Brava"; color: #FF2E88; position: relative;
+       text-shadow: -6px 0 #C6FF3D88, 6px 0 #5ad8ff66, 0 0 60px rgba(255, 46, 136, .5); }
+  .selo { position: absolute; font: 700 26px monospace; letter-spacing: .14em; padding: 12px 26px; border-radius: 999px; }
+  .s1 { top: 70px; left: 80px; background: #C6FF3D; color: #0B0A0D; transform: rotate(-7deg); }
+  .s2 { bottom: 70px; right: 80px; border: 3px dashed #FF2E88; color: #FF2E88; transform: rotate(5deg); }
+  .rodape { position: absolute; bottom: 40px; left: 80px; color: #D9D4E3; font: 22px monospace; letter-spacing: .2em; }
+</style>
+<p class="selo s1">✦ COMUNIDADE ✦</p>
+<h1>A ROSA</h1>
+<p class="selo s2">AMIGOS ONLY</p>
+<p class="rodape">AROSA.NET.BR</p>
