@@ -1,0 +1,7 @@
+# HTML, JS e CSS: o navegador e a CDN sempre perguntam se mudou (resposta 304 barata),
+# assim cada publicação aparece na hora. Fontes e imagens seguem com o cache longo padrão.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js|css)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
