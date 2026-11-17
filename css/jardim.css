@@ -65,17 +65,12 @@ html.outro-mundo .aviso { color: #b0341f; text-shadow: 0 0 14px #000, 0 3px 0 va
 .arvore { position: relative; height: 100svh; overflow: hidden; background: #05040a; }
 .arvore img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: aproximar 40s ease-in-out infinite alternate; }
 @keyframes aproximar { from { transform: scale(1.02); } to { transform: scale(1.12) translateY(-1.5%); } }
-.frutos { position: absolute; inset: 0; width: 100%; height: 100%; animation: aproximar 40s ease-in-out infinite alternate; } /* acompanha o zoom da imagem */
-.bruma { /* névoa baixa passando sobre o mar e um topo que sai da névoa da descida */
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(#2a2c2d 0, rgba(42, 44, 45, 0) 22%),
-    radial-gradient(ellipse 60% 18% at 30% 62%, rgba(150, 160, 175, .22), transparent 70%),
-    radial-gradient(ellipse 50% 14% at 75% 70%, rgba(150, 160, 175, .18), transparent 70%);
-  background-size: 100% 100%, 200% 100%, 200% 100%;
-  animation: bruma 26s linear infinite;
+/* a árvore 3D cobre a ilustração, que só aparece se o 3D não carregar */
+.arvore3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1.5s; }
+.arvore-3d-pronta .arvore3d { opacity: 1; }
+.bruma { /* emenda com a névoa da descida */
+  position: absolute; inset: 0; pointer-events: none; background: linear-gradient(#2a2c2d 0, rgba(42, 44, 45, 0) 22%);
 }
-@keyframes bruma { to { background-position: 0 0, -200% 0, 200% 0; } }
 
 /* rádio: liga e desliga o som (o navegador só deixa tocar depois de um clique) */
 .radio {
