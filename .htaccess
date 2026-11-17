@@ -5,3 +5,6 @@
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
+
+# modelos 3D
+AddType model/gltf-binary .glb
