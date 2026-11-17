@@ -142,14 +142,14 @@ main, .topo, .rodape { position: relative; z-index: 2; }
 
 /* ── cards ── */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 22px; margin-top: 48px; perspective: 1000px; }
-.card {
+.card { container-type: inline-size;
   --mx: 50%; --my: 50%; --rx: 0deg; --ry: 0deg;
   position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 340px; padding: 28px;
   border: 1px solid var(--borda); border-radius: 22px; text-decoration: none; overflow: hidden; isolation: isolate;
   background: linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .01)); backdrop-filter: blur(14px);
   transform: rotateX(var(--rx)) rotateY(var(--ry)); transform-style: preserve-3d; transition: transform .25s ease-out, border-color .3s;
 }
-.card h3 { margin: auto 0 0; font: clamp(32px, 3.4vw, 50px)/1 var(--display); color: var(--tinta); transform: translateZ(40px); }
+.card h3 { margin: auto 0 0; font: min(12.5cqi, 50px)/1 var(--display); /* DAGGERHEART ≈ 7,5em: cabe sempre no card */ color: var(--tinta); transform: translateZ(40px); }
 .card p { margin: 0; color: var(--cromo); font-size: 16px; transform: translateZ(25px); }
 .card-num { font: 700 13px var(--mono); color: var(--apagado); }
 .card-tag { align-self: flex-start; font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: .1em; padding: 6px 12px; border-radius: 999px; background: var(--verde); color: var(--preto); }
