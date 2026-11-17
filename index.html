@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A ROSA</title>
+  <script>
+    // Quem já digitou TLLN não vê mais a home: o site "quebrou de vez" para esse navegador.
+    try { if (localStorage.getItem("tlln") === "1") location.replace("/jardim/"); } catch {}
+  </script>
   <meta name="description" content="A ROSA — um grupo de amigos que se encontra no Discord e, de vez em quando, inventa coisas.">
   <meta name="theme-color" content="#0B0A0D">
   <meta property="og:title" content="A ROSA">

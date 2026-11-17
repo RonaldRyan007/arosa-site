@@ -22,6 +22,43 @@
   });
   teste?.addEventListener("focus", () => { if (teste.value === "ESCREVA AQUI") teste.select(); });
 
+  // Easter egg: escrever TLLN no testador quebra o site e leva para o jardim (fica salvo no navegador).
+  let quebrou = false;
+  teste?.addEventListener("input", () => { if (!quebrou && teste.value.includes("TLLN")) quebrar(); });
+  function quebrar() {
+    quebrou = true;
+    teste.blur();
+    try { localStorage.setItem("tlln", "1"); } catch {}
+    dispatchEvent(new Event("quebrar"));               // a rosa 3D enlouquece
+    document.documentElement.classList.add("quebrando");
+
+    // fatias da tela deslocadas, com cores invertidas, trocando de lugar sem parar
+    const camada = document.createElement("div");
+    camada.className = "quebra";
+    camada.innerHTML = "<i></i>".repeat(14);
+    document.body.append(camada);
+    const fatias = [...camada.children];
+    const sortear = () => fatias.forEach((f) => {
+      f.style.top = Math.random() * 100 + "%";
+      f.style.height = 2 + Math.random() * 12 + "%";
+      f.style.transform = `translateX(${(Math.random() - 0.5) * 30}%)`;
+      f.style.backdropFilter = `invert(1) hue-rotate(${Math.random() * 360}deg) contrast(${1 + Math.random() * 3})`;
+    });
+    const ciclo = setInterval(sortear, 70);
+
+    // os textos viram lixo, letra por letra
+    const textos = [];
+    const andar = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (andar.nextNode()) if (andar.currentNode.nodeValue.trim()) textos.push(andar.currentNode);
+    const LIXO = "▓▒░█▄▀■□◆◇†‡¥§¤ØTLLN";
+    const corromper = setInterval(() => textos.forEach((n) => {
+      n.nodeValue = [...n.nodeValue].map((c) => (c !== " " && Math.random() < 0.18 ? LIXO[(Math.random() * LIXO.length) | 0] : c)).join("");
+    }), 90);
+
+    setTimeout(() => document.documentElement.classList.add("apagando"), 2200);
+    setTimeout(() => { clearInterval(ciclo); clearInterval(corromper); location.replace("/jardim/"); }, 3200);
+  }
+
   // Cursor próprio (só com mouse).
   const cursor = document.querySelector(".cursor");
   if (cursor && matchMedia("(hover: hover) and (pointer: fine)").matches) {

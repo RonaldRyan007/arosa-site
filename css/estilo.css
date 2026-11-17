@@ -214,3 +214,17 @@ main, .topo, .rodape { position: relative; z-index: 2; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .revelar { opacity: 1; translate: 0 0; }
 }
+
+/* ── easter egg TLLN: o site quebrando ── */
+html.quebrando body { animation: quebrar .12s steps(2) infinite; }
+html.quebrando body > * { animation: rasgar .18s steps(1) infinite; }
+html.quebrando .cursor { display: none; }
+@keyframes quebrar {
+  0% { transform: translate(-6px, 3px) skewX(4deg); filter: hue-rotate(90deg) contrast(2); }
+  50% { transform: translate(8px, -4px) skewX(-6deg); filter: invert(1) saturate(4); }
+}
+@keyframes rasgar { 0% { clip-path: inset(0 0 40% 0); } 33% { clip-path: inset(30% 0 0 0); translate: 12px 0; } 66% { clip-path: none; translate: -9px 0; } }
+.quebra { position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
+.quebra i { position: absolute; left: -15%; right: -15%; mix-blend-mode: difference; background: rgba(255, 46, 136, .15); }
+html.apagando body { animation: apagar 1s steps(6) forwards; }
+@keyframes apagar { 0% { filter: brightness(4) contrast(3); } 30% { filter: brightness(1) invert(1); } 100% { filter: brightness(0); } }
